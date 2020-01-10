@@ -27,47 +27,45 @@ public class Score extends AppCompatActivity {
 
     TextView txt_nilaiakhir;
     Button btn_selesai, btn_ulang;
-    ArrayList<String> stock = new ArrayList<>();
+
+    ArrayList<String> hasil = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
 
-        txt_nilaiakhir = findViewById(R.id.txtNilaiakhir);
         btn_selesai = findViewById(R.id.btnSelesai);
         btn_ulang = findViewById(R.id.btnUlang);
-
+        txt_nilaiakhir = findViewById(R.id.txtNilaiAkhir);
 
         Intent arr = getIntent();
-        stock = arr.getStringArrayListExtra("total");
+        hasil = arr.getStringArrayListExtra("hasil");
+        callSoal();
 
+        /*String txthasil = getIntent().getStringExtra("hasil");
+        txtSkor.setText(txthasil);
 
-        callQuiz();
+         */
+        btn_ulang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Score.this, question_activity.class);
+                startActivity(intent);
+            }
+        });
 
         btn_selesai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Score.this, "TERIMA KASIH", Toast.LENGTH_LONG).show();
                 finish();
             }
         });
-
-        btn_ulang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                android.os.Process.killProcess(android.os.Process.myPid());
-
-            }
-        });
-
     }
-
 
     APIInterfacesRest apiInterface;
     ProgressDialog progressDialog;
-
-    public void callQuiz() {
+    public void callSoal(){
 
         apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
         progressDialog = new ProgressDialog(Score.this);
@@ -80,30 +78,25 @@ public class Score extends AppCompatActivity {
                 progressDialog.dismiss();
                 QuizModel data = response.body();
                 //Toast.makeText(LoginActivity.this,userList.getToken().toString(),Toast.LENGTH_LONG).show();
-                if (data != null) {
+                if (data !=null) {
 
+                    Integer point=0;
+                    Integer nilai=0;
 
-                    Integer poin = 0;
-                    Integer nilai = 0;
+                    for (int x = 0;x<data.getData().getSoalQuizAndroid().size();x++){
+                        ArrayList<String> Add = new ArrayList<>(3);
+                        Add.add("4");
+                        Add.add("1");
+                        Add.add("1");
 
-                    for (int x = 0; x < data.getData().getSoalQuizAndroid().size(); x++) {
-
-                        ArrayList<String> hope = new ArrayList<String>(3);
-                        hope.add("4");
-                        hope.add("1");
-                        hope.add("1");
-
-                        if (stock.get(x).equalsIgnoreCase(hope.get(x))) {
-                            poin = Integer.parseInt(data.getData().getSoalQuizAndroid().get(x).getPoint());
-                            nilai += poin;
+                        if(hasil.get(x).equalsIgnoreCase(Add.get(x))){
+                            point = Integer.parseInt(data.getData().getSoalQuizAndroid().get(x).getPoint());
+                            nilai += point;
                         }
-
-
                         txt_nilaiakhir.setText(String.valueOf(nilai));
-
                     }
 
-                } else {
+                }else{
 
                     try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
@@ -112,16 +105,15 @@ public class Score extends AppCompatActivity {
                         Toast.makeText(Score.this, e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
-
             }
 
             @Override
             public void onFailure(Call<QuizModel> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Maaf koneksi bermasalah", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Maaf koneksi bermasalah",Toast.LENGTH_LONG).show();
                 call.cancel();
             }
         });
-
     }
 }
+

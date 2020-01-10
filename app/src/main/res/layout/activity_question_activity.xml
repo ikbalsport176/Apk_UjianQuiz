@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/transparant_bg"
+    android:backgroundTint="@android:color/holo_blue_dark"
     android:orientation="vertical"
     tools:context="com.example.Apk_UjianQuiz.question_activity">
 
@@ -86,11 +88,13 @@
             android:paddingBottom="30dp">
 
             <TextView
-                android:id="@+id/scoreView"
+                android:id="@+id/txtScor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/background_light"
+                android:gravity="center"
                 android:text="Score"
-                android:textSize="24sp" />
+                android:textSize="30sp" />
         </LinearLayout>
 
     </RadioGroup>

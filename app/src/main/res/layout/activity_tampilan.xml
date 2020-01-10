@@ -5,29 +5,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/gradient_bg_1"
+    tools:context=".Tampilan"
+    android:background="@drawable/juarakoding"
     android:orientation="vertical"
     android:gravity="center">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:background="@drawable/transparant_bg"
         android:gravity="center"
-        android:background="@drawable/transparant_bg">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="180dp"
-                android:src="@drawable/juarakoding"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:src="@drawable/juarakoding" />
 
         </LinearLayout>
 
