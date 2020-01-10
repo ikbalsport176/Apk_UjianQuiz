@@ -1,17 +1,20 @@
-package com.example.ujian4_quiz;
+package com.example.Apk_UjianQuiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ujian4_quiz.model.QuizModel;
-import com.example.ujian4_quiz.service.APIClient;
-import com.example.ujian4_quiz.service.APIInterfacesRest;
+import com.example.Apk_UjianQuiz.model.QuizModel;
+import com.example.Apk_UjianQuiz.service.APIClient;
+import com.example.Apk_UjianQuiz.service.APIInterfacesRest;
+import com.example.Apk_UjianQuiz.R;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
@@ -20,12 +23,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class question_activity extends AppCompatActivity {
+public class question_activity extends AppCompatActivity implements View.OnClickListener {
 
     TextView txt_Question,scoreView;
     Button btn_A,btn_B,btn_C,btn_D;
     ImageView gambar1;
 
+    int sizeArr;
+    int i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +49,10 @@ public class question_activity extends AppCompatActivity {
         //imageview
         gambar1 = findViewById(R.id.gambar1);
 
-
+        btn_A.setOnClickListener(this);
+        btn_B.setOnClickListener(this);
+        btn_C.setOnClickListener(this);
+        btn_D.setOnClickListener(this);
         callquiz();
 
     }
@@ -69,29 +77,26 @@ public class question_activity extends AppCompatActivity {
                 //Toast.makeText(LoginActivity.this,userList.getToken().toString(),Toast.LENGTH_LONG).show();
 
                 if (data !=null) {
+                    sizeArr = data.getData().getSoalQuizAndroid().size();
+
+                    if (i < sizeArr){
 
 
-
-                    txt_Question.setText(data.getData().getSoalQuizAndroid().get(0).getPertanyaan().toString());
-                    btn_A.setText(data.getData().getSoalQuizAndroid().get(0).getA().toString());
-                    btn_B.setText(data.getData().getSoalQuizAndroid().get(0).getB().toString());
-                    btn_C.setText(data.getData().getSoalQuizAndroid().get(0).getC().toString());
-                    btn_D.setText(data.getData().getSoalQuizAndroid().get(0).getD().toString());
-
+                        txt_Question.setText(data.getData().getSoalQuizAndroid().get(i).getPertanyaan());
+                    btn_A.setText(data.getData().getSoalQuizAndroid().get(i).getA());
+                    btn_B.setText(data.getData().getSoalQuizAndroid().get(i).getB());
+                    btn_C.setText(data.getData().getSoalQuizAndroid().get(i).getC());
+                    btn_D.setText(data.getData().getSoalQuizAndroid().get(i).getD());
 
 
-                    String image = "http://dewabrata.com:80/dewa/uploads/soal_quiz_android/" + data.getData().getSoalQuizAndroid().get(0).getGambar()+"20200110101347-2020-01-10soal_quiz_android101342.jpg";
+                    String image = data.getData().getSoalQuizAndroid().get(i).getGambar();
                     Picasso.get().load(image).into(gambar1);
-
-                 /*   AdapterListSimple adapter = new AdapterListSimple(MainActivity.this,data.getData().getMoviedb());
-
-                    lst_Movie.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-                    lst_Movie.setItemAnimator(new DefaultItemAnimator());
-                    lst_Movie.setAdapter(adapter);
-
-                     */
-
-
+                    }
+                    else if( i == sizeArr){
+                        Intent score = new Intent(question_activity.this, Score.class);
+                        startActivity(score);
+                }
+                    i++;
 
 
 
@@ -117,5 +122,10 @@ public class question_activity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        callquiz();
     }
 }

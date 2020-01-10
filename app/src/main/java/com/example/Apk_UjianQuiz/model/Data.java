@@ -1,11 +1,11 @@
 
-package com.example.ujian4_quiz.model;
+package com.example.Apk_UjianQuiz.model;
 
 import java.io.Serializable;
 import java.util.List;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable.Creator;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -34,7 +34,7 @@ public class Data implements Serializable, Parcelable
     private final static long serialVersionUID = -6490058661086225723L;
 
     protected Data(Parcel in) {
-        in.readList(this.soalQuizAndroid, (com.example.ujian4_quiz.model.SoalQuizAndroid.class.getClassLoader()));
+        in.readList(this.soalQuizAndroid, (SoalQuizAndroid.class.getClassLoader()));
     }
 
     /**

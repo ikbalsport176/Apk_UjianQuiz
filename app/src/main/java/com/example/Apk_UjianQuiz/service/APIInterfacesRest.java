@@ -1,4 +1,4 @@
-package com.example.ujian4_quiz.service;
+package com.example.Apk_UjianQuiz.service;
 
 /**
  * Created by user on 1/10/2018.
@@ -9,15 +9,10 @@ package com.example.ujian4_quiz.service;
 //import com.example.aplikasi_reviewfilm.genre.GenreModel;
 //import com.example.aplikasi_reviewfilm.movieshow.ShowModel;
 //import com.example.aplikasi_reviewfilm.rating.RatingModel;
-import com.example.ujian4_quiz.model.QuizModel;
+import com.example.Apk_UjianQuiz.model.QuizModel;
 
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Multipart;
-import retrofit2.http.POST;
-import retrofit2.http.Part;
 
 /**
  * Created by anupamchugh on 09/01/17.

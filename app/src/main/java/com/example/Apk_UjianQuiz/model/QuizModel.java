@@ -1,10 +1,10 @@
 
-package com.example.ujian4_quiz.model;
+package com.example.Apk_UjianQuiz.model;
 
 import java.io.Serializable;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable.Creator;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

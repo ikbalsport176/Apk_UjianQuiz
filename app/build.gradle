@@ -4,7 +4,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.example.ujian4_quiz"
+        applicationId "com.example.apk_ujiankuis"
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 1

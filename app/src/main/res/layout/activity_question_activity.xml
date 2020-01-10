@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".question_activity">
+    tools:context="com.example.Apk_UjianQuiz.question_activity">
 
     <TextView
         android:id="@+id/txt_Question"
