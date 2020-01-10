@@ -28,6 +28,14 @@
         android:textSize="36sp" />
 
     <Button
+        android:id="@+id/btnUlang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
+        android:layout_weight="1"
+        android:text="Ulang" />
+
+    <Button
         android:id="@+id/btnSelesai"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,11 +43,4 @@
         android:layout_weight="1"
         android:text="Selesai" />
 
-    <Button
-        android:id="@+id/btnUlang"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
-        android:layout_weight="1"
-        android:text="Ulang" />
 </LinearLayout>
